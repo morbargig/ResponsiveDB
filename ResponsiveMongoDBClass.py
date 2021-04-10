@@ -9,8 +9,7 @@ class Mongod(object):
     def __init__(self):
         self.connect = False
 
-    def stopped(self, text):
-
+    def log(self, text):
         print((len(text) * "═") + "═╗", '\n' +
               text + ' ║\n' + (len(text) * "═") + "═╝\n")
 
@@ -18,13 +17,13 @@ class Mongod(object):
         self.process = subprocess.Popen('mongod')
         time.sleep(1)
         text = "mongod started"
-        self.stopped(text)
+        self.log(text)
 
     def stop(self):
         self.process.kill()
         time.sleep(1)
         text = "mongod stopped"
-        self.stopped(text)
+        self.log(text)
 
     def findData(self, _id, collaction=None, collactionName=None):
         neededToClose = self.startMongod()
